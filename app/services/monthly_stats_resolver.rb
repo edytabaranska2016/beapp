@@ -5,7 +5,7 @@ class WeeklyStatsResolver
     { 
       total_distance: calculated_total_distance,
       total_price: calculated_total_price 
-    }
+    }.to_h
   end
 
   private

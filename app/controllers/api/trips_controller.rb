@@ -16,8 +16,11 @@ module Api
     end
 
     def weekly_stats
-      # render json: { ok:  true }.to_h
       render json: WeeklyStatsResolver.new.perform
+    end
+
+    def monthly_stats
+      render json: MonthlyStatsResolver.new.perform
     end
 
     private
