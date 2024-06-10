@@ -15,6 +15,11 @@ module Api
       end
     end
 
+    def weekly_stats
+      # render json: { ok:  true }.to_h
+      render json: WeeklyStatsResolver.new.perform
+    end
+
     private
 
     def trip_params
