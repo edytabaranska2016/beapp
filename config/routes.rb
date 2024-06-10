@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   namespace :api do
     resources :trips
     get '/weekly_stats', to: 'trips#weekly_stats'
+    get '/monthly_stats', to: 'trips#monthly_stats'
     # post '/trips/:params', to: 'trips#create'
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
