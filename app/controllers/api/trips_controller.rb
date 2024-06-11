@@ -6,21 +6,14 @@ module Api
     end
 
     def create
-      ActiveRecord::Base.transaction do
-        @trip = Trip.new(trip_params)
-        @trip.save
-        create_start_address_location
-        create_destination_address_location
-        render json: @trip
+      @trip = Trip.new(trip_params)
+      if @trip.save
+          create_start_address_location
+          create_destination_address_location
+          render json: @trip
+      else
+        render json: @trip.errors, status: :unprocessable_entity
       end
-    end
-
-    def weekly_stats
-      render json: WeeklyStatsResolver.new.perform
-    end
-
-    def monthly_stats
-      render json: MonthlyStatsResolver.new.perform
     end
 
     private
