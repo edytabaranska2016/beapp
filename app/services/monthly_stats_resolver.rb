@@ -38,13 +38,7 @@ class MonthlyStatsResolver
   end
 
   def calculated_total_distance_per_day(day)
-    total_distance = 0
-    per_day_scope(day).each do |trip|
-      geocoded_distance = ::DistanceResolver.new(trip).perform
-      total_distance += geocoded_distance
-    end
-
-    total_distance
+    per_day_scope(day).sum(:distance).round(2)
   end
 
   def formatted_total_dostance(day)
@@ -65,12 +59,12 @@ class MonthlyStatsResolver
     avg_price = total_price / trips_number(day)
     "#{avg_price.round(2)}PLN"
   rescue ZeroDivisionError
-    "0PLN"
+    '0PLN'
   end
 
   def avg_ride(day)
     "#{calculated_total_distance_per_day(day) / trips_number(day)}PLN"
   rescue ZeroDivisionError
-    "0km"
+    '0km'
   end
 end
