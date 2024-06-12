@@ -8,9 +8,9 @@ module Api
     def create
       @trip = Trip.new(trip_params)
       if @trip.save
-          create_start_address_location
-          create_destination_address_location
-          render json: @trip
+        create_start_address_location
+        create_destination_address_location
+        render json: @trip
       else
         render json: @trip.errors, status: :unprocessable_entity
       end
@@ -23,7 +23,7 @@ module Api
     end
 
     def create_start_address_location
-      start_location = Location.create(address: trip_params[:start_address])
+      start_location = Location.new(address: trip_params[:start_address])
       start_location.save
     end
 
