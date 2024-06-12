@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 describe Api::StatsController do
-  let(:trip) { create(:trip) }
-
   describe '#weekly' do
     specify do
       get :weekly
